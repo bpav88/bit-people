@@ -1,0 +1,19 @@
+.articleDiv{
+    border: 0.5px solid gray;
+    padding: 2%;
+    margin-bottom: -1px;
+  }
+  .articleDiv img {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 50%;
+  }
+  .articleDiv div{
+    display: inline-block;
+    line-height: 1;
+  }
+  .articleDiv p {
+    margin: 0;
+    padding: 2px;
+    margin-left: 5px;
+  }
