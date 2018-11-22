@@ -1,0 +1,31 @@
+/* *{
+    margin: 0;
+    padding: 0;
+}
+.list{
+    padding: 3% 2%;
+    border: 1px solid lightgrey;
+    color: black;
+    margin: -1px;
+
+}
+
+.list--black{
+    color:white;
+    background-color: #979797
+
+}
+.list__img{
+    width: 10%;
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+p{
+    margin: 1%;
+} */
+
+.female {
+    background-color: #ffebee !important;
+}
