@@ -3,7 +3,7 @@ import './App.css';
 import { Header } from './shared/Header.js';
 import { Footer } from './shared/Footer.js';
 import UserList from './users/UserList.js';
-import userArray from '../data/data.js';
+import { userArray } from './../service/userService';
 
 const App = () => {
   return (
