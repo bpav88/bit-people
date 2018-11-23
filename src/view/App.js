@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
 import { Header } from "./partials/Header";
-import { Search } from "./partials/Search"
+import { Search } from "./partials/Search";
 import { Footer } from "./partials/Footer";
 import { UserList } from "./users/UserList";
 import { fetchData } from "../service/service";
@@ -14,7 +14,8 @@ class App extends React.Component {
             isGrid: false,
             users: [],
             isLoading: true,
-            searchText: ''
+            searchText: '',
+            page: 'list'
         }
     }
 
@@ -37,6 +38,13 @@ class App extends React.Component {
         })
     }
 
+    onAbout = () => {
+        this.setState({
+            page: 'about'
+        })
+
+    }
+
     fetchUsers = () => {
         const previousView = localStorage.getItem("isGrid") === "true" ? true : false;
         fetchData()
@@ -46,17 +54,15 @@ class App extends React.Component {
                     isGrid: previousView,
                     isLoading: false
                 });
-
             })
     }
-
 
     componentDidMount() {
         this.fetchUsers();
     }
 
     onRefresh = () => {
-        this.fetchUsers()
+        this.fetchUsers();
     }
 
     render() {
@@ -65,19 +71,25 @@ class App extends React.Component {
         })
 
         return (
-            <div>
+            <Fragment>
                 <Header title="Bit People"
                     onClickHandler={this.onClick}
                     isGrid={this.state.isGrid}
-                    onRefreshClick={this.onRefresh} />
-                <Search onSearchHandler={this.onSearch} />
+                    onRefreshClick={this.onRefresh}
+                    onAboutClick={this.onAbout} />
+
                 {this.state.isLoading ?
                     <Loader /> :
-                    <UserList
-                        listOfUsers={searchedUsers}
-                        isGrid={this.state.isGrid} />}
+                    <Fragment>
+                        <Search onSearchHandler={this.onSearch} />
+                        <UserList
+                            listOfUsers={searchedUsers}
+                            isGrid={this.state.isGrid}
+                            page={this.state.page} />
+                    </Fragment>
+                }
                 <Footer />
-            </div >
+            </Fragment >
         )
     }
 }

@@ -17,6 +17,13 @@ class User {
 
         return hiddenEmail;
     }
+
+    getFullName = () => {
+
+        const newFirstName = this.firstName.charAt(0).toUpperCase() + this.firstName.slice(1);
+        const newLastName = this.lastName.charAt(0).toUpperCase() + this.lastName.slice(1);
+        return `${newFirstName} ${newLastName}`
+    }
 }
 
 export default User;

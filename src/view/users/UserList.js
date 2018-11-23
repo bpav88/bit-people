@@ -2,8 +2,9 @@ import React from 'react';
 import "./UserList.css";
 import { UserCardItem } from "./UserCardItem";
 import { UserListItem } from "./UserListItems";
+import { About } from './About';
 
-const UserList = ({ listOfUsers, isGrid }) => {
+const UserList = ({ listOfUsers, isGrid, page }) => {
 
     const userCardItems = listOfUsers.map((user, index) => {
 
@@ -35,11 +36,19 @@ const UserList = ({ listOfUsers, isGrid }) => {
         />
     })
 
-    return (
-        <main className="row">
-            {isGrid ? userCardItems : userListItems}
-        </main>
-    )
+    if (page === 'about') {
+        return (
+            <main className="row">
+                <About />
+            </main>
+        )
+    } else {
+        return (
+            <main className="row">
+                {isGrid ? userCardItems : userListItems}
+            </main>
+        )
+    }
 }
 
 export { UserList }
