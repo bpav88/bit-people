@@ -1,17 +1,45 @@
 import React from 'react';
-import UserItem from './UserItem';
-import './userList.css';
+import "./UserList.css";
+import { UserCardItem } from "./UserCardItem";
+import { UserListItem } from "./UserListItems";
 
+const UserList = ({ listOfUsers, isGrid }) => {
 
-const UserList = (props) => {
-    const userList = props.users.map((user, id) => {
-        return < UserItem key={id} img={user.url} name={user.name} email={user.getEmailData()} dateOfBirth={user.getDateOfBirthData()} />
+    const userCardItems = listOfUsers.map((user, index) => {
+
+        const { firstName, pictures, birthDate, gender } = user;
+
+        return <UserCardItem
+            key={index}
+            name={firstName}
+            email={user.getHiddenEmail()}
+            image={pictures.large}
+            birthDate={birthDate}
+            gender={gender}
+        />
     })
+
+    const userListItems = listOfUsers.map((user, index) => {
+
+        const { firstName, lastName, pictures, birthDate, gender } = user;
+
+        return <UserListItem
+            key={index}
+            name={firstName}
+            surname={lastName}
+            email={user.getHiddenEmail()}
+            image={pictures.thumbnail}
+            birthDate={birthDate}
+            gender={gender}
+
+        />
+    })
+
     return (
-        <main>
-            {userList}
+        <main className="row">
+            {isGrid ? userCardItems : userListItems}
         </main>
     )
 }
 
-export default UserList;
+export { UserList }
